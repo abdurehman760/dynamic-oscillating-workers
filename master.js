@@ -97,7 +97,7 @@ function handleMessage() {
 
   if (messageCount >= MAX_MESSAGES_BEFORE_SWITCH) {
     switchRoles();
-    messageCount = 1; // Reset message count after switching roles
+    messageCount = 1;
   } else {
     messageCount++;
   }
@@ -178,7 +178,7 @@ async function loadPreviousState() {
       for (let i = 0; i < pusherCount; i++) spawnPusher();
       for (let i = 0; i < pullerCount; i++) spawnPuller();
     } else {
-      console.log('No previous state found. Starting fresh.');
+      
     }
   } catch (err) {
     console.error('Error loading state from Redis:', err);

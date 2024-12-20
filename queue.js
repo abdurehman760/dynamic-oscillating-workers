@@ -9,7 +9,7 @@ const messageQueue = new Queue('messages', { connection: redisConfig });
 async function addJob(data) {
   try {
     await messageQueue.add('message', data);
-    console.log('Job added to queue:', data);
+    
   } catch (err) {
     console.error('Error adding job to queue:', err);
   }
