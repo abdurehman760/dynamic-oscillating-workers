@@ -56,8 +56,20 @@ To manage state persistence, the application uses Docker Redis Stack. Follow the
    ```bash
    node server.js
    ```
+    OR
+   ```bash
+   npm run saad
+   ```
 
-4. **Access the API:**
+    OR
+   ```bash
+   npm run start
+   ```
+    OR
+   ```bash
+   npm run dev 
+   ```
+5. **Access the API:**
    - Start process: `POST http://localhost:3000/start`
    - Stop process: `POST http://localhost:3000/stop`
    - Get system state: `GET http://localhost:3000/state`
