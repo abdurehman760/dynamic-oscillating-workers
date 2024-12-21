@@ -202,13 +202,12 @@ The application listens for `SIGINT` and ensures:
 
 ---
 
-## Future Improvements
-- Add support for configurable limits (e.g., MAX_PUSHERS, MAX_PULLERS).
-- Enhance state restoration to handle partial failures.
-- Implement metrics for monitoring worker performance.
+## Future Improvements can be Done by
+- Adding support for configurable limits (e.g., MAX_PUSHERS, MAX_PULLERS).
+- Enhancing state restoration to handle partial failures.
+- Implementing metrics for monitoring worker performance.
 
 ---
 
-## License
-This project is licensed under the MIT License.
+
 
