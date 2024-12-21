@@ -9,10 +9,11 @@ const messageQueue = new Queue('messages', { connection: redisConfig });
 async function addJob(data) {
   try {
     await messageQueue.add('message', data);
-    
+    console.log(`[Queue] Job added to queue: ${JSON.stringify(data)}`);
   } catch (err) {
-    console.error('Error adding job to queue:', err);
+    console.error('[Queue] Error adding job to queue:', err);
   }
 }
 
 module.exports = { messageQueue, addJob };
+

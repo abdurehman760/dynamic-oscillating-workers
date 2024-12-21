@@ -1,14 +1,14 @@
 //server.js
 const express = require('express');
 const { startProcess, stopProcess, getSystemState } = require('./master');
-const { subscriber } = require('./state'); 
+const { subscriber, loadState } = require('./state'); 
 const app = express();
 const port = 3000;
 
 app.use(express.json());
 
-// Start the process
-let isProcessRunning = false; // Variable to track whether the process is running
+// Track whether the process is running
+let isProcessRunning = false;
 
 // Start the process
 app.post('/start', async (req, res) => {
@@ -30,7 +30,23 @@ app.get('/state', (req, res) => {
   res.json(state);
 });
 
-
+// Get the current Redis state
+app.get('/getredisstate', async (req, res) => {
+  try {
+    const redisState = await loadState();
+    if (redisState) {
+      res.json({
+        message: "Note: The state might not be up-to-date.",
+        redisState,
+      });
+    } else {
+      res.status(404).json({ message: 'No state found in Redis.' });
+    }
+  } catch (error) {
+    console.error('Error fetching state from Redis:', error);
+    res.status(500).json({ message: 'Error fetching state from Redis.' });
+  }
+});
 
 // SSE endpoint to stream the system state updates
 app.get('/events', (req, res) => {
@@ -55,7 +71,6 @@ app.get('/events', (req, res) => {
     res.end();
   });
 });
-
 
 // Start the server
 app.listen(port, () => {
